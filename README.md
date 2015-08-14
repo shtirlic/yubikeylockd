@@ -1,10 +1,16 @@
 # yubikeylockd
 
+Simple daemon for locking and unlocking OS X with Yubikey.
+
 
 ## Install
 
 Run make and make install
 
+
+## Additional requirements
+  * Yubico PAM module
+  * Require password *immediately* after sleep or screen saver begins
 
 ## How it works
 
