@@ -41,10 +41,14 @@ void DeviceNotification( void *		refCon,
     {
         printf("Device 0x%08x removed.\n", service);
 
-        // Run lock
+        // Run lock via idle
+        //
         printf("Yubikey removed. Lock the screen.\n");
-        char *appToRun = "pmset displaysleepnow";
-        system(appToRun);
+        io_registry_entry_t reg = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
+        if (reg) {
+          IORegistryEntrySetCFProperty(reg, CFSTR("IORequestIdle"), kCFBooleanTrue);
+          IOObjectRelease(reg);
+        }
 
         // Dump our private data to stdout just to see what it looks like.
         //
@@ -166,6 +170,8 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
         // Done with this io_service_t
         //
         kr = IOObjectRelease(usbDevice);
+
+        free(privateDataRef);
     }
 }
 
