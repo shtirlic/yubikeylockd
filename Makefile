@@ -18,6 +18,6 @@ yubikeylockd:
 
 install:
 		install ./yubikeylockd /usr/local/bin/yubikeylockd
-		launchctl unload com.podtynnyi.com.yubikeylockd.plist
-		install ./com.podtynnyi.com.yubikeylockd.plist  ~/Library/LaunchAgents/com.podtynnyi.com.yubikeylockd.plist
-		launchctl load com.podtynnyi.com.yubikeylockd.plist
+		launchctl unload com.podtynnyi.yubikeylockd.plist
+		install ./com.podtynnyi.yubikeylockd.plist  ~/Library/LaunchAgents/com.podtynnyi.yubikeylockd.plist
+		launchctl load com.podtynnyi.yubikeylockd.plist
