@@ -30,13 +30,10 @@ static io_iterator_t		gAddedIter;
 static CFRunLoopRef		gRunLoop;
 
 void DeviceNotification( void *		refCon,
-                         io_service_t 	service,
-                         natural_t 	messageType,
-                         void *		messageArgument )
+                        io_service_t 	service,
+                        natural_t 	messageType,
+                        void *		messageArgument )
 {
-    kern_return_t	kr;
-    MyPrivateData	*privateDataRef = (MyPrivateData *) refCon;
-
     if (messageType == kIOMessageServiceIsTerminated)
     {
         printf("Device 0x%08x removed.\n", service);
@@ -46,25 +43,10 @@ void DeviceNotification( void *		refCon,
         printf("Yubikey removed. Lock the screen.\n");
         io_registry_entry_t reg = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
         if (reg) {
-          IORegistryEntrySetCFProperty(reg, CFSTR("IORequestIdle"), kCFBooleanTrue);
-          IOObjectRelease(reg);
+            IORegistryEntrySetCFProperty(reg, CFSTR("IORequestIdle"), kCFBooleanTrue);
+            IOObjectRelease(reg);
         }
 
-        // Dump our private data to stdout just to see what it looks like.
-        //
-        CFShow(privateDataRef->deviceName);
-        printf("It was at location: 0x%lx\n", (unsigned long)privateDataRef->locationID);
-
-        // Free the data we're no longer using now that the device is going away
-        //
-        CFRelease(privateDataRef->deviceName);
-
-        if ( privateDataRef->deviceInterface )
-            kr = (*privateDataRef->deviceInterface)->Release (privateDataRef->deviceInterface);
-
-        kr = IOObjectRelease(privateDataRef->notification);
-
-        free(privateDataRef);
     }
 }
 
@@ -99,7 +81,7 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
         // In this sample we'll just use the service's name.
         //
         kr = IORegistryEntryGetName(usbDevice, deviceName);
-	if (KERN_SUCCESS != kr)
+        if (KERN_SUCCESS != kr)
         {
             deviceName[0] = '\0';
         }
@@ -155,12 +137,12 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
         // private data as the refCon for the notification.
         //
         kr = IOServiceAddInterestNotification(	gNotifyPort,			// notifyPort
-                                               usbDevice,			// service
-                                               kIOGeneralInterest,		// interestType
-                                               DeviceNotification,		// callback
-                                               privateDataRef,			// refCon
-                                               &(privateDataRef->notification)	// notification
-                                               );
+                                              usbDevice,			// service
+                                              kIOGeneralInterest,		// interestType
+                                              DeviceNotification,		// callback
+                                              privateDataRef,			// refCon
+                                              &(privateDataRef->notification)	// notification
+                                              );
 
         if (KERN_SUCCESS != kr)
         {
@@ -241,7 +223,7 @@ int main (int argc, const char *argv[])
     // dictionary reference, so there is no need to release it later on.
     //
     matchingDict = IOServiceMatching(kIOUSBDeviceClassName);	// Interested in instances of class
-                                                                // IOUSBDevice and its subclasses
+    // IOUSBDevice and its subclasses
     if (!matchingDict)
     {
         printf("Can't create a USB matching dictionary\n");
@@ -260,18 +242,18 @@ int main (int argc, const char *argv[])
     //
     numberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbVendor);
     CFDictionarySetValue(
-            matchingDict,
-            CFSTR(kUSBVendorID),
-            numberRef);
+                         matchingDict,
+                         CFSTR(kUSBVendorID),
+                         numberRef);
     CFRelease(numberRef);
 
     // Create a CFNumber for the idProduct and set the value in the dictionary
     //
     numberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbProduct);
     CFDictionarySetValue(
-            matchingDict,
-            CFSTR(kUSBProductID),
-            numberRef);
+                         matchingDict,
+                         CFSTR(kUSBProductID),
+                         numberRef);
     CFRelease(numberRef);
     numberRef = 0;
 
