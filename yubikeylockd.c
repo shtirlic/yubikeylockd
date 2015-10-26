@@ -12,7 +12,11 @@
 // This is VID and PID for Yubikey NEO
 
 #define kMyVendorID   0x1050
-#define kMyProductID	0x0111
+// #define kMyProductID	0x0110 // Product String:   2 "Yubikey NEO OTP"
+// #define kMyProductID	0x0111 // Product String:   2 "Yubikey NEO OTP+CCID"
+// #define kMyProductID	0x0114 // Product String:   2 "Yubikey NEO OTP+U2F"
+#define kMyProductID	0x0116   // Product String:   2 "Yubikey NEO OTP+U2F+CCID"
+
 
 typedef struct MyPrivateData {
     io_object_t			notification;
