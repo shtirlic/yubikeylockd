@@ -4,7 +4,7 @@ Simple daemon for locking and unlocking OS X with Yubikey.
 
 ## Install
 
-Run make and make install
+Run ```make clean && make```
 
 ## Additional requirements
   * Configured integration with Yubico PAM module
