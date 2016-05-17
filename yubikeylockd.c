@@ -15,6 +15,7 @@
 // #define kMyProductID	0x0110 // Product String:   2 "Yubikey NEO OTP"
 // #define kMyProductID	0x0111 // Product String:   2 "Yubikey NEO OTP+CCID"
 // #define kMyProductID	0x0114 // Product String:   2 "Yubikey NEO OTP+U2F"
+// #define kMyProductID	0x0403 // Product String:   2 "Yubikey 4 OTP+U2F"
 #define kMyProductID	0x0116   // Product String:   2 "Yubikey NEO OTP+U2F+CCID"
 
 
