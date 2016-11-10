@@ -15,7 +15,7 @@
         <key>com.apple.device-attach</key>
         <dict>
             <key>idProduct</key>
-            <integer>278</integer>
+            <string>*</string>
             <key>idVendor</key>
             <integer>4176</integer>
             <key>IOProviderClass</key>
