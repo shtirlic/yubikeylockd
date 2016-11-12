@@ -9,14 +9,8 @@
 #include <mach/mach.h>
 #include <stdio.h>
 
-// This is VID and PID for Yubikey NEO
-
+// This is the USB vendor ID for Yubico
 #define kMyVendorID   0x1050
-// #define kMyProductID	0x0110 // Product String:   2 "Yubikey NEO OTP"
-// #define kMyProductID	0x0111 // Product String:   2 "Yubikey NEO OTP+CCID"
-// #define kMyProductID	0x0114 // Product String:   2 "Yubikey NEO OTP+U2F"
-// #define kMyProductID	0x0403 // Product String:   2 "Yubikey 4 OTP+U2F"
-#define kMyProductID	0x0116   // Product String:   2 "Yubikey NEO OTP+U2F+CCID"
 
 
 typedef struct MyPrivateData {
@@ -190,17 +184,15 @@ int main (int argc, const char *argv[])
     CFMutableDictionaryRef 	matchingDict;
     CFRunLoopSourceRef		runLoopSource;
     CFNumberRef			numberRef;
+    CFStringRef         stringRef;
     kern_return_t		kr;
     long			usbVendor = kMyVendorID;
-    long			usbProduct = kMyProductID;
     sig_t			oldHandler;
 
     // pick up command line arguments
     //
     if (argc > 1)
         usbVendor = atoi(argv[1]);
-    if (argc > 2)
-        usbProduct = atoi(argv[2]);
 
     // Set up a signal handler so we can clean up when we're interrupted from the command line
     // Otherwise we stay in our run loop forever.
@@ -218,7 +210,7 @@ int main (int argc, const char *argv[])
         return -1;
     }
 
-    printf("Looking for devices matching vendor ID=%ld and product ID=%ld\n", usbVendor, usbProduct);
+    printf("Looking for devices matching vendor ID=%ld\n", usbVendor);
 
     // Set up the matching criteria for the devices we're interested in.  The matching criteria needs to follow
     // the same rules as kernel drivers:  mainly it needs to follow the USB Common Class Specification, pp. 6-7.
@@ -251,16 +243,17 @@ int main (int argc, const char *argv[])
                          CFSTR(kUSBVendorID),
                          numberRef);
     CFRelease(numberRef);
+    numberRef = 0;
 
-    // Create a CFNumber for the idProduct and set the value in the dictionary
+    // Create a CFString for the wildcard product ID and set the value in the dictionary
     //
-    numberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbProduct);
+    stringRef = CFSTR("*");
     CFDictionarySetValue(
                          matchingDict,
                          CFSTR(kUSBProductID),
-                         numberRef);
-    CFRelease(numberRef);
-    numberRef = 0;
+                         stringRef);
+    CFRelease(stringRef);
+    stringRef = 0;
 
     // Create a notification port and add its run loop event source to our run loop
     // This is how async notifications get set up.
