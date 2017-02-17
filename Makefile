@@ -21,3 +21,8 @@ install:
 		launchctl unload com.podtynnyi.yubikeylockd.plist
 		install ./com.podtynnyi.yubikeylockd.plist  ~/Library/LaunchAgents/com.podtynnyi.yubikeylockd.plist
 		launchctl load com.podtynnyi.yubikeylockd.plist
+
+uninstall:
+		launchctl unload com.podtynnyi.yubikeylockd.plist
+		rm /usr/local/bin/yubikeylockd
+		rm ~/Library/LaunchAgents/com.podtynnyi.yubikeylockd.plist
