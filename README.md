@@ -7,7 +7,7 @@ Simple daemon for locking and unlocking OS X with Yubikey.
 Run ```make clean && make```
 
 ## Additional requirements
-  * Configured integration with Yubico PAM module
+  * [YubiKey using the native smart card (PIV) mode](https://www.yubico.com/why-yubico/for-businesses/computer-login/mac-os-login/)
   * Require password *immediately* after sleep or screen saver begins
   ![](http://i.imgur.com/URXUukP.png)
 
