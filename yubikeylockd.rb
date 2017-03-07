@@ -1,9 +1,9 @@
 class Yubikeylockd < Formula
   desc "Simple Daemon for lock and unlock OS X with Yubikey Edit"
   homepage "https://github.com/shtirlic/yubikeylockd"
-  url "https://github.com/shtirlic/yubikeylockd/archive/master.zip"
-  version "1.0"
+  url "https://github.com/shtirlic/yubikeylockd/archive/v1.0.zip"
   head "https://github.com/shtirlic/yubikeylockd.git"
+  sha256 "a5109130b5b8a1aac8be38533c7f06c03f6128834025dc2d971a8cb7e156d8ca"
 
   # depends_on "cmake" => :build
 
