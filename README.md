@@ -4,7 +4,18 @@ Simple daemon for locking and unlocking OS X with Yubikey.
 
 ## Install
 
-Run ```make clean && make```
+Via Homebrew formula:
+
+```
+brew install https://raw.githubusercontent.com/shtirlic/yubikeylockd/master/yubikeylockd.rb
+```
+
+Manual install:
+
+```
+ git clone https://github.com/shtirlic/yubikeylockd.git
+ make clean && make
+```
 
 ## Additional requirements
   * [YubiKey using the native smart card (PIV) mode](https://www.yubico.com/why-yubico/for-businesses/computer-login/mac-os-login/)

@@ -3,7 +3,7 @@ class Yubikeylockd < Formula
   homepage "https://github.com/shtirlic/yubikeylockd"
   url "https://github.com/shtirlic/yubikeylockd/archive/v1.0.zip"
   head "https://github.com/shtirlic/yubikeylockd.git"
-  sha256 "a5109130b5b8a1aac8be38533c7f06c03f6128834025dc2d971a8cb7e156d8ca"
+  sha256 "aa9920b5e7ee9b6441bff8229bcb7368163e4bbe83de8a07bd09ba38c544aa32"
 
   # depends_on "cmake" => :build
 
