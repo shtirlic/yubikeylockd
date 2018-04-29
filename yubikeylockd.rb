@@ -16,7 +16,8 @@ class Yubikeylockd < Formula
 
   plist_options startup: true
 
-  def plist; <<-EOS.undent
+  def plist
+    <<-PLIST
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">
@@ -46,7 +47,7 @@ class Yubikeylockd < Formula
         </dict>
       </dict>
     </plist>
-    EOS
+    PLIST
   end
 
   test do
@@ -59,6 +60,6 @@ class Yubikeylockd < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "true"
+    system 'true'
   end
 end

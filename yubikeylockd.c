@@ -40,10 +40,10 @@ void DeviceNotification( void *		refCon,
         // Run lock via idle
         //
         printf("Yubikey removed. Lock the screen.\n");
-        
+
         // Lock the keychain too
         system("/usr/bin/security lock-keychain");
-        
+
         io_registry_entry_t reg = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
         if (reg) {
             IORegistryEntrySetCFProperty(reg, CFSTR("IORequestIdle"), kCFBooleanTrue);

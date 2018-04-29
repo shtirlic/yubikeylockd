@@ -8,21 +8,10 @@ CFLAGS=-Wall -Werror -O2 $(SOURCE)
 LDFLAGS=$(LIBRARIES) $(FRAMEWORKS)
 OUT=-o yubikeylockd
 
-all: yubikeylockd install
+all: yubikeylockd
 
 clean:
 		rm -rf yubikeylockd
 
 yubikeylockd:
 		$(CC) $(CFLAGS) $(LDFLAGS) $(OUT)
-
-install:
-		install ./yubikeylockd /usr/local/bin/yubikeylockd
-		launchctl unload com.podtynnyi.yubikeylockd.plist
-		install ./com.podtynnyi.yubikeylockd.plist  ~/Library/LaunchAgents/com.podtynnyi.yubikeylockd.plist
-		launchctl load com.podtynnyi.yubikeylockd.plist
-
-uninstall:
-		launchctl unload com.podtynnyi.yubikeylockd.plist
-		rm /usr/local/bin/yubikeylockd
-		rm ~/Library/LaunchAgents/com.podtynnyi.yubikeylockd.plist
