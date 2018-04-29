@@ -1,6 +1,6 @@
 # yubikeylockd
 
-Simple daemon for locking and unlocking OS X with Yubikey.
+Simple daemon for locking and unlocking macOS with Yubikey.
 
 ## Install
 
@@ -10,13 +10,6 @@ Via Homebrew formula:
 brew install https://raw.githubusercontent.com/shtirlic/yubikeylockd/master/yubikeylockd.rb
 ```
 
-Manual install:
-
-```
- git clone https://github.com/shtirlic/yubikeylockd.git
- make clean && make
-```
-
 ## Additional requirements
   * [YubiKey using the native smart card (PIV) mode](https://www.yubico.com/why-yubico/for-businesses/computer-login/mac-os-login/)
   * Require password *immediately* after sleep or screen saver begins
@@ -24,7 +17,7 @@ Manual install:
 
 ## How it works
 
-When you attach Yubikey for the first time launchctl will run yubikeylockd daemon
+When you attach Yubikey for the first time `launchctl` will run `yubikeylockd` daemon
 that will simply monitor the state of the Yubikey USB devices.
 Daemon based on the sample provided by Apple for IOKit development.
 
