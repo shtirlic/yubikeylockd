@@ -1,11 +1,8 @@
 class Yubikeylockd < Formula
-  desc "Simple Daemon for lock and unlock OS X with Yubikey Edit"
-  homepage "https://github.com/shtirlic/yubikeylockd"
-  url "https://github.com/shtirlic/yubikeylockd/archive/v1.0.zip"
-  head "https://github.com/shtirlic/yubikeylockd.git"
-  sha256 "aa9920b5e7ee9b6441bff8229bcb7368163e4bbe83de8a07bd09ba38c544aa32"
-
-  # depends_on "cmake" => :build
+  desc 'Simple daemon for locking and unlocking macOS with Yubikey.'
+  homepage 'https://github.com/shtirlic/yubikeylockd'
+  url 'https://github.com/shtirlic/yubikeylockd/archive/v1.1.zip'
+  head 'https://github.com/shtirlic/yubikeylockd.git'
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
